@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Atta</title>
+    <title>Rice</title>
     <link rel="stylesheet" href="all.css">
     <style>
         .weight-select {
@@ -17,7 +17,7 @@
 </head>
 <body>
     <div class="header">
-        <div>Atta</div>
+        <div>Rice</div>
         <div class="cart-icon" onclick="redirectToBuyPage()">🛒</div>
     </div>
 
@@ -25,18 +25,22 @@
     <script>
         const products = [
 
-    { name: 'Chakki Atta',  img: 'p489.image/masala/biryani.jpg' , prices: { '10g': 10, '20g': 20, '50g': 25, '100g': 50, '200g': 75, '1kg': 100 }},
-    { name: 'AASHIRVAAD Atta',img: 'p489.image/masala/chilli.jpg', prices: { '10g': 10, '20g': 20, '50g': 25, '100g': 50, '200g': 75, '1kg': 100 } },
-    { name: 'FORTUNE chakki Atta',img: 'p489.image/masala/garam.jpg', prices: { '10g': 10, '20g': 20, '50g': 25, '100g': 50, '200g': 75, '1kg': 100 } },
-    { name: 'AASHIRVAAD Atta with Multigrains',img: 'p489.image/masala/Mtr leon.jpg' , prices: { '10g': 10, '20g': 20, '50g': 25, '100g': 50, '200g': 75, '1kg': 100 }},
-    { name: 'AASHIRVAAD Atta with Millets',img: 'p489.image/masala/sambar.jpg' , prices: { '10g': 10, '20g': 20, '50g': 25, '100g': 50, '200g': 75, '1kg': 100 }},
-    { name: 'AASHIRVAAD Bansi Rava',img: 'p489.image/masala/idly chilli.jpg', prices: { '10g': 10, '20g': 20, '50g': 25, '100g': 50, '200g': 75, '1kg': 100 } },
-    { name: 'AASHIRVAAD Double Rosted Rava',img: 'p489.image/masala/mutton.jpg', prices: { '10g': 10, '20g': 20, '50g': 25, '100g': 50, '200g': 75, '1kg': 100 } },
-    { name: 'FORTUNE Suji(Rava)',img: 'p489.image/masala/sakthi egg.jpg ', prices: { '10g': 10, '20g': 20, '50g': 25, '100g': 50, '200g': 75, '1kg': 100 } },
-    { name: 'NAGA Sooji(ravai)',img: 'p489.image/masala/fish.jpg' , prices: { '10g': 10, '20g': 20, '50g': 25, '100g': 50, '200g': 75, '1kg': 100 }},
-    { name: 'Naga Rice flour',img: 'p489.image/masala/chilli.jpg', prices: { '10g': 10, '20g': 20, '50g': 25, '100g': 50, '200g': 75, '1kg': 100 } },
-    { name: 'FORTUNE Madia',img: 'p489.image/masala/chicken.jpg' , prices: { '10g': 10, '20g': 20, '50g': 25, '100g': 50, '200g': 75, '1kg': 100 }},
-    { name: 'Naga Madia',img: 'p489.image/masala/turmeric.jpg', prices: { '10g': 10, '20g': 20, '50g': 25, '100g': 50, '200g': 75, '1kg': 100 } },
+    { name: '',  img: 'p489.image/masala/biryani.jpg' , prices: { '10g': 10, '20g': 20, '50g': 25, '100g': 50, '200g': 75, '1kg': 100 }},
+    { name: '',img: 'p489.image/masala/chilli.jpg', prices: { '10g': 10, '20g': 20, '50g': 25, '100g': 50, '200g': 75, '1kg': 100 } },
+    { name: '',img: 'p489.image/masala/garam.jpg', prices: { '10g': 10, '20g': 20, '50g': 25, '100g': 50, '200g': 75, '1kg': 100 } },
+    { name: '',img: 'p489.image/masala/Mtr leon.jpg' , prices: { '10g': 10, '20g': 20, '50g': 25, '100g': 50, '200g': 75, '1kg': 100 }},
+    { name: '',img: 'p489.image/masala/sambar.jpg' , prices: { '10g': 10, '20g': 20, '50g': 25, '100g': 50, '200g': 75, '1kg': 100 }},
+    { name: '',img: 'p489.image/masala/idly chilli.jpg', prices: { '10g': 10, '20g': 20, '50g': 25, '100g': 50, '200g': 75, '1kg': 100 } },
+    { name: '',img: 'p489.image/masala/mutton.jpg', prices: { '10g': 10, '20g': 20, '50g': 25, '100g': 50, '200g': 75, '1kg': 100 } },
+    { name: '',img: 'p489.image/masala/sakthi egg.jpg ', prices: { '10g': 10, '20g': 20, '50g': 25, '100g': 50, '200g': 75, '1kg': 100 } },
+    { name: '',img: 'p489.image/masala/fish.jpg' , prices: { '10g': 10, '20g': 20, '50g': 25, '100g': 50, '200g': 75, '1kg': 100 }},
+    { name: '',img: 'p489.image/masala/chilli.jpg', prices: { '10g': 10, '20g': 20, '50g': 25, '100g': 50, '200g': 75, '1kg': 100 } },
+    { name: '',img: 'p489.image/masala/chicken.jpg' , prices: { '10g': 10, '20g': 20, '50g': 25, '100g': 50, '200g': 75, '1kg': 100 }},
+    { name: '',img: 'p489.image/masala/turmeric.jpg', prices: { '10g': 10, '20g': 20, '50g': 25, '100g': 50, '200g': 75, '1kg': 100 } },
+    { name: '',img: 'p489.image/masala/coriander.jpg', prices: { '10g': 10, '20g': 20, '50g': 25, '100g': 50, '200g': 75, '1kg': 100 } },
+    { name: '',img: 'p489.image/masala/sakthi chilli.jpg' , prices: { '10g': 10, '20g': 20, '50g': 25, '100g': 50, '200g': 75, '1kg': 100 }},
+    { name: '',img: 'p489.image/masala/pepper.jpg', prices: { '10g': 10, '20g': 20, '50g': 25, '100g': 50, '200g': 75, '1kg': 100 } },
+    { name: '',img: 'p489.image/masala/sakthi coriander.jpg' , prices: { '10g': 10, '20g': 20, '50g': 25, '100g': 50, '200g': 75, '1kg': 100 }}
         ];
         
         const cart = JSON.parse(localStorage.getItem('cart')) || [];
