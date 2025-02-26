@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Grocery Categories</title>
+    <style>
+        body {
+            font-family: 'Poppins', sans-serif;
+            background: url('https://www.toptal.com/designers/subtlepatterns/patterns/grocery.png');
+            background-size: cover;
+            background-attachment: fixed;
+            margin: 0;
+            padding: 0;
+            color: #333;
+        }
+
+        .header {
+            padding: 10px 10px;
+            background-color: #eff3f0;
+            color: rgb(210, 62, 62);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-size: 24px;
+            font-weight: bold;
+            position: fixed;
+            top: 0;
+            width: 100%;
+            z-index: 1000;
+            box-sizing: border-box;
+        }
+
+        .header .username {
+            font-size: 18px;
+            font-weight: normal;
+        }
+
+        .header .logout-btn {
+            background-color: #28a745;
+            border: none;
+            color: white;
+            font-size: 16px;
+            padding: 10px 20px;
+            cursor: pointer;
+            border-radius: 5px;
+            transition: background-color 0.3s ease;
+            margin-left: 15px;
+        }
+
+        .header .logout-btn:hover {
+            background-color: #290e97;
+        }
+
+        .categories-container {
+            padding: 100px 5%;
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+            gap: 20px;
+            max-width: 1200px;
+            margin: 0 auto;
+}
+
+
+        .category-card {
+            background-color: #f0e8e8;
+            border-radius: 10px;
+            box-shadow: 0px 4px 10px rgba(28, 16, 15, 0.2);
+            overflow: hidden;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            text-align: center;
+            padding: 10px;
+        }
+
+        .category-card:hover {
+            transform: scale(1.05);
+            box-shadow: 0px 10px 10px white(16, 134, 198, 0.3);
+        }
+
+        .category-card img {
+            width: 50%;
+            height: 150px;
+            object-fit: cover;
+            margin-bottom: 20px;
+        }
+
+        .category-card h3 {
+            font-size: 22px;
+            margin: 0 0 10px;
+            color: #2e3794;
+        }
+
+        .category-card button {
+            display: inline-block;
+            margin-top: 10px;
+            padding: 5px 10px;
+            background-color: #28a745;
+            color: #fff;
+            font-size: 10px;
+            border: none;
+            border-radius: 10px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
+        .category-card button:hover {
+            background-color: #218838;
+        }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <div>Welcome to Our Grocery Store!</div>
+        <div class="username">Hello, <span id="username">Shopper</span></div>
+        <div>
+            <button class="logout-btn" onclick="logout()">Logout</button>
+        </div>
+    </div>
+
+    <div class="categories-container" >
+        <div class="category-card" onclick="window.location.href='page8.html' ">
+            <img src="p489.image/oil/GoldWinner.jpg" alt="Oil">
+            <h3>Oil</h3>
+            <button onclick="selectCategory('Oil')">View Items</button>
+        </div>
+
+        <div class="category-card" onclick="window.location.href='page9.html' ">
+            <img src="p489.image/ghee/amul.jpg" alt="Ghee">
+            <h3>Ghee</h3>
+            <button onclick="selectCategory('Ghee')">View Items</button>
+        </div>
+
+       
+
+
+
+    </div>
+
+    <script>
+        const storedUsername = localStorage.getItem("username");
+        if (storedUsername) {
+            document.getElementById("username").innerText = storedUsername;
+        }
+
+        function selectCategory(category) {
+            sessionStorage.setItem("selectedCategory", category);
+            window.location.href = "categoryItems.html";
+        }
+
+        function logout() {
+            localStorage.removeItem("username");
+            sessionStorage.clear();
+            window.location.href = "loginPage.html";
+        }
+    </script>
+</body>
+</html>

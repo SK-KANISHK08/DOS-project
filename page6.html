@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Masala and Spices</title>
+    <link rel="stylesheet" href="all.css">
+    <style>
+        .weight-select {
+            padding: 5px;
+            font-size: 16px;
+            border-radius: 5px;
+            border: 1px solid #ccc;
+            background-color: #fff;
+        }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <div>Masala & Spices</div>
+        <div class="cart-icon" onclick="redirectToBuyPage()">🛒</div>
+    </div>
+
+    <div class="categories-container" id="categoriesContainer"></div>
+
+    <script>
+        const products = [
+{ name: "Dettol Kitchen Slab", img: "p489.image/laundary/dettol.jpg",prices: { '10g': 10, '20g': 20, '50g': 25, '100g': 50, '200g': 75, '1kg': 100 } },
+{ name: "Vim Liquid",img: "p489.image/laundary/vim liquid.jpg",prices: { '10g': 10, '20g': 20, '50g': 25, '100g': 50, '200g': 75, '1kg': 100 } },
+{ name: "Pril Liquid",img: "p489.image/laundary/pril liquid.jpg",prices: { '10g': 10, '20g': 20, '50g': 25, '100g': 50, '200g': 75, '1kg': 100 } },
+{ name: "Vim Cleaning Gel",img: "p489.image/laundary/vim liquid yello.jpg", prices: { '10g': 10, '20g': 20, '50g': 25, '100g': 50, '200g': 75, '1kg': 100 }},
+{ name: "Vin Dishwash Bar",img: "p489.image/laundary/vim soap.jpg" ,prices: { '10g': 10, '20g': 20, '50g': 25, '100g': 50, '200g': 75, '1kg': 100 }},
+{ name: "Exo Touch Bar",img: "p489.image/laundary/exp soap.jpg",prices: { '10g': 10, '20g': 20, '50g': 25, '100g': 50, '200g': 75, '1kg': 100 } },
+{ name: "Pril Dishwash Bar",img: "p489.image/laundary/pril.jpg" ,prices: { '10g': 10, '20g': 20, '50g': 25, '100g': 50, '200g': 75, '1kg': 100 }},
+{ name: "Exo Anti Bacterial Bar",img: "p489.image/laundary/exo anti bacterial bar.jpg",prices: { '10g': 10, '20g': 20, '50g': 25, '100g': 50, '200g': 75, '1kg': 100 } },
+{ name: "Scotch Brite Scrub Pad",img: "p489.image/laundary/scotch brite.jpg" ,prices: { '10g': 10, '20g': 20, '50g': 25, '100g': 50, '200g': 75, '1kg': 100 }},
+{ name: "Ariel Matic Liquid", img: "p489.image/laundary/aerial.jpg",prices: { '10g': 10, '20g': 20, '50g': 25, '100g': 50, '200g': 75, '1kg': 100 } },
+{ name: "Tide Extra Powder",img: "p489.image/laundary/tide.jpg",prices: { '10g': 10, '20g': 20, '50g': 25, '100g': 50, '200g': 75, '1kg': 100 } },
+{ name: "Surf Excel Matic Liquid", img: "p489.image/laundary/surfexcel liquid top load.jpg",prices: { '10g': 10, '20g': 20, '50g': 25, '100g': 50, '200g': 75, '1kg': 100 } },
+{ name: "Surf Matic Powder",img: "p489.image/laundary/surfexcel matic.jpg" ,prices: { '10g': 10, '20g': 20, '50g': 25, '100g': 50, '200g': 75, '1kg': 100 }},
+{ name: "Rin Matic Liquid", img: "p489.image/laundary/rin liquid top load.jpg",prices: { '10g': 10, '20g': 20, '50g': 25, '100g': 50, '200g': 75, '1kg': 100 } },
+{ name: "Rin Lemon and Rose Powder",img: "p489.image/laundary/rin power.jpg",prices: { '10g': 10, '20g': 20, '50g': 25, '100g': 50, '200g': 75, '1kg': 100 } },
+{ name: "Vanish Detergent Liquid",img: "p489.image/laundary/vanish.jpg", prices: { '10g': 10, '20g': 20, '50g': 25, '100g': 50, '200g': 75, '1kg': 100 }},
+{ name: "Comfort Liquid",img: "p489.image/laundary/comfort liquid.jpg", prices: { '10g': 10, '20g': 20, '50g': 25, '100g': 50, '200g': 75, '1kg': 100 }},
+{ name: "Rin Bar",img: "p489.image/laundary/rin.jpg",prices: { '10g': 10, '20g': 20, '50g': 25, '100g': 50, '200g': 75, '1kg': 100 } },
+{ name: "Surf Excel Bar",img: "p489.image/laundary/surfexcel.jpg",prices: { '10g': 10, '20g': 20, '50g': 25, '100g': 50, '200g': 75, '1kg': 100 } },
+{ name: "Tide Bar",img: "p489.image/laundary/tide soap.jpg", prices: { '10g': 10, '20g': 20, '50g': 25, '100g': 50, '200g': 75, '1kg': 100 }}
+        ];
+
+    
+        const cart = JSON.parse(localStorage.getItem('cart')) || [];
+        
+        function addToCart(productName, price, weight) {
+            const existingItem = cart.find(item => item.name === productName && item.weight === weight);
+            if (existingItem) {
+                existingItem.quantity += 1;
+            } else {
+                cart.push({ name: productName, price, weight, quantity: 1 });
+            }
+            localStorage.setItem('cart', JSON.stringify(cart));
+        }
+        
+        function updatePrice(event) {
+            const selectElement = event.target;
+            const productCard = selectElement.closest('.category-card');
+            const priceElement = productCard.querySelector('.price');
+            const selectedWeight = selectElement.value;
+            const product = products.find(p => p.name === productCard.dataset.name);
+            const newPrice = product.prices[selectedWeight];
+            priceElement.textContent = `₹${newPrice}`;
+            selectElement.dataset.price = newPrice;
+        }
+        
+        function renderProducts() {
+            const container = document.getElementById('categoriesContainer');
+            products.forEach(product => {
+                const productCard = document.createElement('div');
+                productCard.className = 'category-card';
+                productCard.dataset.name = product.name;
+                
+                const initialWeight = Object.keys(product.prices)[0];
+                const initialPrice = product.prices[initialWeight];
+                
+                productCard.innerHTML = `
+                    <img src="${product.img}" alt="${product.name}">
+                    <h3>${product.name}</h3>
+                    <select class="weight-select">
+                        ${Object.keys(product.prices).map(weight => `<option value="${weight}">${weight}</option>`).join('')}
+                    </select>
+                    <p class="price">₹${initialPrice}</p>
+                    <button onclick="addToCart('${product.name}', parseFloat(this.previousElementSibling.textContent.replace('₹', '')), this.previousElementSibling.previousElementSibling.value)">Add to Cart</button>
+                `;
+                
+                productCard.querySelector('.weight-select').addEventListener('change', updatePrice);
+                container.appendChild(productCard);
+            });
+        }
+        
+        function redirectToBuyPage() {
+            window.location.href = 'buy.html';
+        }
+        
+        renderProducts();
+    </script>
+</body>
+</html>

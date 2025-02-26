@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Buy Items</title>
+    <style>
+        table {
+            width: 80%;
+            margin: 20px auto;
+            border-collapse: collapse;
+        }
+        th, td {
+            border: 1px solid #ddd;
+            padding: 10px;
+            text-align: center;
+        }
+        th {
+            background-color: #f4f4f4;
+        }
+        .total-summary {
+            margin: 20px auto;
+            width: 80%;
+            text-align: right;
+        }
+        button {
+            padding: 10px 20px;
+            margin: 10px;
+            cursor: pointer;
+        }
+        .confirm-btn {
+            background-color: green;
+            color: white;
+        }
+        .cancel-btn {
+            background-color: red;
+            color: white;
+        }
+        .remove-btn, .quantity-btn {
+            background-color: orange;
+            color: white;
+            border: none;
+            padding: 5px 10px;
+            cursor: pointer;
+        }
+        .quantity-btn {
+            background-color: blue;
+        }
+    </style>
+</head>
+<body>
+    <h2 style="text-align: center;">Cart Summary</h2>
+    <table>
+        <thead>
+            <tr>
+                <th>S.No</th>
+                <th>Item Name</th>
+                <th>Quantity</th>
+                <th>Price (₹)</th>
+                <th>Total (₹)</th>
+                <th>Action</th>
+            </tr>
+        </thead>
+        <tbody id="cartTableBody"></tbody>
+    </table>
+    <div class="total-summary">
+        <p id="totalAmount">Total Amount: ₹0</p>
+        <p id="gstAmount">GST (18%): ₹0</p>
+        <p id="grandTotal">Grand Total: ₹0</p>
+    </div>
+    <div style="text-align: center;">
+        <button class="confirm-btn" onclick="confirmPurchase()">Confirm</button>
+        <button class="cancel-btn" onclick="cancelPurchase()">Cancel</button>
+    </div>
+
+    <script>
+        let cart = JSON.parse(localStorage.getItem('cart')) || [];
+
+        function renderCart() {
+            const tableBody = document.getElementById('cartTableBody');
+            let totalAmount = 0;
+            tableBody.innerHTML = '';
+
+            cart.forEach((item, index) => {
+                const itemTotal = item.price * item.quantity;
+                totalAmount += itemTotal;
+
+                tableBody.innerHTML += `
+                    <tr>
+                        <td>${index + 1}</td>
+                        <td>${item.name}</td>
+                        <td>
+                            <button class="quantity-btn" onclick="changeQuantity(${index}, -1)">-</button>
+                            ${item.quantity}
+                            <button class="quantity-btn" onclick="changeQuantity(${index}, 1)">+</button>
+                        </td>
+                        <td>${item.price}</td>
+                        <td>${itemTotal.toFixed(2)}</td>
+                        <td>
+                            <button class="remove-btn" onclick="removeItem(${index})">Remove</button>
+                        </td>
+                    </tr>
+                `;
+            });
+
+            const gst = totalAmount * 0.18;
+            const grandTotal = totalAmount + gst;
+
+            document.getElementById('totalAmount').innerText = `Total Amount: ₹${totalAmount.toFixed(2)}`;
+            document.getElementById('gstAmount').innerText = `GST (18%): ₹${gst.toFixed(2)}`;
+            document.getElementById('grandTotal').innerText = `Grand Total: ₹${grandTotal.toFixed(2)}`;
+        }
+
+        function changeQuantity(index, amount) {
+            if (cart[index].quantity + amount > 0) {
+                cart[index].quantity += amount;
+            } else {
+                cart.splice(index, 1);
+            }
+            localStorage.setItem('cart', JSON.stringify(cart));
+            renderCart();
+        }
+
+        function removeItem(index) {
+            cart.splice(index, 1);
+            localStorage.setItem('cart', JSON.stringify(cart));
+            renderCart();
+        }
+
+        function confirmPurchase() {
+            localStorage.removeItem('cart');
+            window.location.href = 'Thankyou.html';
+        }
+
+        function cancelPurchase() {
+            localStorage.removeItem('cart');
+            window.location.href = 'ThankYou.html';
+        }
+
+        renderCart();
+    </script>
+</body>
+</html>

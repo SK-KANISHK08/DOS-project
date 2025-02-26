@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Oil Categories</title>
+    <link rel="stylesheet" href="all.css">
+</head>
+<body>
+    <div class="header">
+        <div>Buscuits</div>
+        <div class="cart-icon" onclick="redirectToBuyPage()">🛒</div>
+    </div>
+
+    <div class="categories-container" id="categoriesContainer"></div>
+
+    <script>
+        const products = [
+        { name: "Hide & Seek",img: "p489.image/Biscuites/Hide & Seek.jpg" , prices: { '10g': 10, '20g': 20, '50g': 25, '100g': 50, '200g': 75, '1kg': 100 }},
+        { name: "Dark Fantasy",img: "p489.image/Biscuites/Dark Fantasy.jpg" , prices: { '10g': 10, '20g': 20, '50g': 25, '100g': 50, '200g': 75, '1kg': 100 }},
+        { name: "Good Day",img: "p489.image/Biscuites/good day.jpg" , prices: { '10g': 10, '20g': 20, '50g': 25, '100g': 50, '200g': 75, '1kg': 100 }},
+        {name: "Unibic",img: "p489.image/Biscuites/Unibic.jpg" , prices: { '10g': 10, '20g': 20, '50g': 25, '100g': 50, '200g': 75, '1kg': 100 }},
+        {name: "Parle-G",img: "p489.image/Biscuites/parle-G.jpg" , prices: { '10g': 10, '20g': 20, '50g': 25, '100g': 50, '200g': 75, '1kg': 100 }},
+        {name: "Milky Biscuits",img: "p489.image/Biscuites/milky.jpg" , prices: { '10g': 10, '20g': 20, '50g': 25, '100g': 50, '200g': 75, '1kg': 100 }},
+        {name: "Marie Gold",img: "p489.image/Biscuites/Marie Gold.jpg" , prices: { '10g': 10, '20g': 20, '50g': 25, '100g': 50, '200g': 75, '1kg': 100 }},
+        {name: "Nutri Choice",img: "p489.image/Biscuites/nutri choice.jpg" , prices: { '10g': 10, '20g': 20, '50g': 25, '100g': 50, '200g': 75, '1kg': 100 }},
+        {name: "Oreo",img: "p489.image/Biscuites/oreo.jpg" , prices: { '10g': 10, '20g': 20, '50g': 25, '100g': 50, '200g': 75, '1kg': 100 }},
+        {name: "Jim Jam",img: "p489.image/Biscuites/jim jam.jpg" , prices: { '10g': 10, '20g': 20, '50g': 25, '100g': 50, '200g': 75, '1kg': 100 }},
+        {name: "Bourbon",img: "p489.image/Biscuites/Bourbon.jpg" , prices: { '10g': 10, '20g': 20, '50g': 25, '100g': 50, '200g': 75, '1kg': 100 } }
+    ];
+
+
+    const cart = JSON.parse(localStorage.getItem('cart')) || [];
+        
+        function addToCart(productName, price, weight) {
+            const existingItem = cart.find(item => item.name === productName && item.weight === weight);
+            if (existingItem) {
+                existingItem.quantity += 1;
+            } else {
+                cart.push({ name: productName, price, weight, quantity: 1 });
+            }
+            localStorage.setItem('cart', JSON.stringify(cart));
+        }
+        
+        function updatePrice(event) {
+            const selectElement = event.target;
+            const productCard = selectElement.closest('.category-card');
+            const priceElement = productCard.querySelector('.price');
+            const selectedWeight = selectElement.value;
+            const product = products.find(p => p.name === productCard.dataset.name);
+            const newPrice = product.prices[selectedWeight];
+            priceElement.textContent = `₹${newPrice}`;
+            selectElement.dataset.price = newPrice;
+        }
+        
+        function renderProducts() {
+            const container = document.getElementById('categoriesContainer');
+            products.forEach(product => {
+                const productCard = document.createElement('div');
+                productCard.className = 'category-card';
+                productCard.dataset.name = product.name;
+                
+                const initialWeight = Object.keys(product.prices)[0];
+                const initialPrice = product.prices[initialWeight];
+                
+                productCard.innerHTML = `
+                    <img src="${product.img}" alt="${product.name}">
+                    <h3>${product.name}</h3>
+                    <select class="weight-select">
+                        ${Object.keys(product.prices).map(weight => `<option value="${weight}">${weight}</option>`).join('')}
+                    </select>
+                    <p class="price">₹${initialPrice}</p>
+                    <button onclick="addToCart('${product.name}', parseFloat(this.previousElementSibling.textContent.replace('₹', '')), this.previousElementSibling.previousElementSibling.value)">Add to Cart</button>
+                `;
+                
+                productCard.querySelector('.weight-select').addEventListener('change', updatePrice);
+                container.appendChild(productCard);
+            });
+        }
+        
+        function redirectToBuyPage() {
+            window.location.href = 'buy.html';
+        }
+        
+        renderProducts();
+    </script>
+</body>
+</html>
