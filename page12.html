@@ -5,10 +5,19 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Chocolate Categories</title>
     <link rel="stylesheet" href="all.css">
+    <style>
+        .weight-select {
+            padding: 5px;
+            font-size: 16px;
+            border-radius: 5px;
+            border: 1px solid #ccc;
+            background-color: #fff;
+        }
+    </style>
 </head>
 <body>
     <div class="header">
-        <div>Buscuits</div>
+        <div>Biscuits</div>
         <div class="cart-icon" onclick="redirectToBuyPage()">🛒</div>
     </div>
 
@@ -16,48 +25,69 @@
 
     <script>
         const products = [
-            {name: "Alpenliebe Gold", price: 100, img: "p489.image/chocolates/AlpenliebeGold.jpg"},
-            {name: "Melody Toffee", price: 60, img: "p489.image/chocolates/melody.jpg"},
-            {name: "Kinder Joy", price: 30, img: "p489.image/chocolates/kinder joy.jpg"},
-            {name: "Shots", price: 5, img: "p489.image/chocolates/shots.jpg"},
-            {name: "Gems", price: 5, img: "p489.image/chocolates/gems.jpg"},
-            {name: "5 Stars", price: 10, img: "p489.image/chocolates/5 star.jpg"},
-            {name: "Dairy Milk", price: 40, img: "p489.image/chocolates/dairy milk.jpg"},
-            {name: "Mango Bites", price: 70, img: "p489.image/chocolates/mango bite.jpg"},
-            {name: "Eclairs", price: 90, img: "p489.image/chocolates/eclairs.jpg"}
+            { name: "Alpenliebe Gold", prices: { 'Small': 50, 'Medium': 100, 'Large': 150 }, img: "p489.image/chocolates/Alpenliebe Gold Rich Milk.jpg" },
+            { name: "Melody Toffee", prices: { 'Small': 30, 'Medium': 60, 'Large': 90 }, img: "p489.image/chocolates/melody.jpg" },
+            { name: "Kinder Joy", prices: { 'Small': 15, 'Medium': 30, 'Large': 50 }, img: "p489.image/chocolates/kinder joy.jpg" },
+            { name: "Shots", prices: { 'Small': 5, 'Medium': 10, 'Large': 20 }, img: "p489.image/chocolates/shots.jpg" },
+            { name: "Gems", prices: { 'Small': 5, 'Medium': 10, 'Large': 20 }, img: "p489.image/chocolates/gems.jpg" },
+            { name: "5 Stars", prices: { 'Small': 10, 'Medium': 20, 'Large': 40 }, img: "p489.image/chocolates/5 star.jpg" },
+            { name: "Dairy Milk", prices: { 'Small': 20, 'Medium': 40, 'Large': 80 }, img: "p489.image/chocolates/dairy milk.jpg" },
+            { name: "Mango Bites", prices: { 'Small': 35, 'Medium': 70, 'Large': 100 }, img: "p489.image/chocolates/mango bite.jpg" },
+            { name: "Eclairs", prices: { 'Small': 45, 'Medium': 90, 'Large': 120 }, img: "p489.image/chocolates/eclairs.jpg" }
         ];
-
-        function addToCart(productName, price) {
-            let cart = JSON.parse(localStorage.getItem('cart')) || [];
-            const existingItem = cart.find(item => item.name === productName);
+    
+        const cart = JSON.parse(localStorage.getItem('cart')) || [];
+        
+        function addToCart(productName, price, weight) {
+            const existingItem = cart.find(item => item.name === productName && item.weight === weight);
             if (existingItem) {
                 existingItem.quantity += 1;
             } else {
-                cart.push({ name: productName, price, quantity: 1 });
+                cart.push({ name: productName, price, weight, quantity: 1 });
             }
             localStorage.setItem('cart', JSON.stringify(cart));
-            alert(productName + " added to cart");
         }
-
+        
+        function updatePrice(event) {
+            const selectElement = event.target;
+            const productCard = selectElement.closest('.category-card');
+            const priceElement = productCard.querySelector('.price');
+            const selectedWeight = selectElement.value;
+            const product = products.find(p => p.name === productCard.dataset.name);
+            const newPrice = product.prices[selectedWeight];
+            priceElement.textContent = `₹${newPrice}`;
+            selectElement.dataset.price = newPrice;
+        }
+        
         function renderProducts() {
             const container = document.getElementById('categoriesContainer');
             products.forEach(product => {
                 const productCard = document.createElement('div');
                 productCard.className = 'category-card';
+                productCard.dataset.name = product.name;
+                
+                const initialWeight = Object.keys(product.prices)[0];
+                const initialPrice = product.prices[initialWeight];
+                
                 productCard.innerHTML = `
                     <img src="${product.img}" alt="${product.name}">
                     <h3>${product.name}</h3>
-                    <p class="price">₹${product.price}</p>
-                    <button class="add-to-cart-btn" onclick="addToCart('${product.name}', ${product.price})">Add to Cart</button>
+                    <select class="weight-select">
+                        ${Object.keys(product.prices).map(weight => `<option value="${weight}">${weight}</option>`).join('')}
+                    </select>
+                    <p class="price">₹${initialPrice}</p>
+                    <button onclick="addToCart('${product.name}', parseFloat(this.previousElementSibling.textContent.replace('₹', '')), this.previousElementSibling.previousElementSibling.value)">Add to Cart</button>
                 `;
+                
+                productCard.querySelector('.weight-select').addEventListener('change', updatePrice);
                 container.appendChild(productCard);
             });
         }
-
+        
         function redirectToBuyPage() {
             window.location.href = 'buy.html';
         }
-
+        
         renderProducts();
     </script>
 </body>
