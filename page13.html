@@ -9,24 +9,20 @@
 <body>
     <div class="header">
         <div> Hair Oils</div>
-        <div class="cart-icon" onclick="redirectToBuyPage()">🛒</div>
-    </div>
-
-    <div class="categories-container" id="categoriesContainer"></div>
-
+        <!-- < class="cart-icon" onclick="redirectToBuyPage()">🛒</ -->
     <script>
         const products = [
-        {name: "Parachute Oil",  img: "p489.image/hair care/parachute.jpg" , prices: { '10g': 10, '20g': 20, '50g': 25, '100g': 50, '200g': 75, '1kg': 100 }},
-    {name: "Navaratna Oil", img: "p489.image/hair care/navratha.jpg" , prices: { '10g': 10, '20g': 20, '50g': 25, '100g': 50, '200g': 75, '1kg': 100 }},
-    {name: "VVD Oil", img: "p489.image/hair care/vvd.jpg" , prices: { '10g': 10, '20g': 20, '50g': 25, '100g': 50, '200g': 75, '1kg': 100 }},
-    {name: "Vatika Oil",  img: "p489.image/hair care/vatika.jpg" , prices: { '10g': 10, '20g': 20, '50g': 25, '100g': 50, '200g': 75, '1kg': 100 }},
-    {name: "Nihar Oil",  img: "p489.image/hair care/nihar .jpg" , prices: { '10g': 10, '20g': 20, '50g': 25, '100g': 50, '200g': 75, '1kg': 100 }},
-    {name: "Head & Shoulders Shampoo", img: "p489.image/hair care/head and sholders.jpg" , prices: { '10g': 10, '20g': 20, '50g': 25, '100g': 50, '200g': 75, '1kg': 100 }},
-    {name: "Clinic Plus Shampoo",img: "p489.image/hair care/clinic.jpg" , prices: { '10g': 10, '20g': 20, '50g': 25, '100g': 50, '200g': 75, '1kg': 100 }},
-    {name: "Meera Shampoo", img: "p489.image/hair care/meera.jpg" , prices: { '10g': 10, '20g': 20, '50g': 25, '100g': 50, '200g': 75, '1kg': 100 }},
-    {name: "Dove Shampoo", img: "p489.image/hair care/dove.jpg" , prices: { '10g': 10, '20g': 20, '50g': 25, '100g': 50, '200g': 75, '1kg': 100 }},
-    {name: "Chik Shampoo", img: "p489.image/hair care/chik.jpg" , prices: { '10g': 10, '20g': 20, '50g': 25, '100g': 50, '200g': 75, '1kg': 100 }},
-    {name: "Pantene Shampoo", img: "p489.image/hair care/pantene.jpg" , prices: { '10g': 10, '20g': 20, '50g': 25, '100g': 50, '200g': 75, '1kg': 100 }}
+        {name: "Parachute Oil",  img: "p489.image/hair care/parachute.jpg" },
+    {name: "Navaratna Oil", img: "p489.image/hair care/navratha.jpg" },
+    {name: "VVD Oil", img: "p489.image/hair care/vvd.jpg"},
+    {name: "Vatika Oil",  img: "p489.image/hair care/vatika.jpg" },
+    {name: "Nihar Oil",  img: "p489.image/hair care/nihar .jpg" },
+    {name: "Head & Shoulders Shampoo", img: "p489.image/hair care/head and sholders.jpg" },
+    {name: "Clinic Plus Shampoo",img: "p489.image/hair care/clinic.jpg" },
+    {name: "Meera Shampoo", img: "p489.image/hair care/meera.jpg" },
+    {name: "Dove Shampoo", img: "p489.image/hair care/dove.jpg" },
+    {name: "Chik Shampoo", img: "p489.image/hair care/chik.jpg" },
+    {name: "Pantene Shampoo", img: "p489.image/hair care/pantene.jpg" },
         ];
 
         const cart = JSON.parse(localStorage.getItem('cart')) || [];
