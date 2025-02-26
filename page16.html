@@ -25,22 +25,26 @@
     <script>
         const products = [
 
-    { name: 'Pepsodent',  img: 'p489.image/masala/biryani.jpg' , prices: { '10g': 10, '20g': 20, '50g': 25, '100g': 50, '200g': 75, '1kg': 100 }},
-    { name: 'Dauber Red Gel',img: 'p489.image/masala/chilli.jpg', prices: { '10g': 10, '20g': 20, '50g': 25, '100g': 50, '200g': 75, '1kg': 100 } },
-    { name: 'Aachi Garam Masala',img: 'p489.image/masala/garam.jpg', prices: { '10g': 10, '20g': 20, '50g': 25, '100g': 50, '200g': 75, '1kg': 100 } },
-    { name: 'MTR Lemon Mix Powder',img: 'p489.image/masala/Mtr leon.jpg' , prices: { '10g': 10, '20g': 20, '50g': 25, '100g': 50, '200g': 75, '1kg': 100 }},
-    { name: 'Aachi Sambar Powder',img: 'p489.image/masala/sambar.jpg' , prices: { '10g': 10, '20g': 20, '50g': 25, '100g': 50, '200g': 75, '1kg': 100 }},
-    { name: 'Aachi Idly Powder',img: 'p489.image/masala/idly chilli.jpg', prices: { '10g': 10, '20g': 20, '50g': 25, '100g': 50, '200g': 75, '1kg': 100 } },
-    { name: 'Aachi Mutton Masala',img: 'p489.image/masala/mutton.jpg', prices: { '10g': 10, '20g': 20, '50g': 25, '100g': 50, '200g': 75, '1kg': 100 } },
-    { name: 'Sakthi Egg Masala',img: 'p489.image/masala/sakthi egg.jpg ', prices: { '10g': 10, '20g': 20, '50g': 25, '100g': 50, '200g': 75, '1kg': 100 } },
-    { name: 'Aachi Fish Fry Masala',img: 'p489.image/masala/fish.jpg' , prices: { '10g': 10, '20g': 20, '50g': 25, '100g': 50, '200g': 75, '1kg': 100 }},
-    { name: 'Aachi Chilli Powder',img: 'p489.image/masala/chilli.jpg', prices: { '10g': 10, '20g': 20, '50g': 25, '100g': 50, '200g': 75, '1kg': 100 } },
-    { name: 'Aachi Chicken Masala',img: 'p489.image/masala/chicken.jpg' , prices: { '10g': 10, '20g': 20, '50g': 25, '100g': 50, '200g': 75, '1kg': 100 }},
-    { name: 'Aachi Turmeric Powder',img: 'p489.image/masala/turmeric.jpg', prices: { '10g': 10, '20g': 20, '50g': 25, '100g': 50, '200g': 75, '1kg': 100 } },
-    { name: 'Aachi Coriander Powder',img: 'p489.image/masala/coriander.jpg', prices: { '10g': 10, '20g': 20, '50g': 25, '100g': 50, '200g': 75, '1kg': 100 } },
-   // { name: 'Sakthi Chilli Powder',img: 'p489.image/masala/sakthi chilli.jpg' , prices: { '10g': 10, '20g': 20, '50g': 25, '100g': 50, '200g': 75, '1kg': 100 }},
-    { name: 'Aachi Pepper Powder',img: 'p489.image/masala/pepper.jpg', prices: { '10g': 10, '20g': 20, '50g': 25, '100g': 50, '200g': 75, '1kg': 100 } },
-    { name: 'Sakthi Coriander Powder',img: 'p489.image/masala/sakthi coriander.jpg' , prices: { '10g': 10, '20g': 20, '50g': 25, '100g': 50, '200g': 75, '1kg': 100 }}
+    { name: 'Pepsodent Paste',  img: 'p489.image/masala/biryani.jpg' , prices: { '10g': 10, '20g': 20, '50g': 25, '100g': 50, '200g': 75, '1kg': 100 }},
+    { name: 'Dauber Red Gel Paste',img: 'p489.image/masala/chilli.jpg', prices: { '10g': 10, '20g': 20, '50g': 25, '100g': 50, '200g': 75, '1kg': 100 } },
+    { name: 'CloseUp Paste',img: 'p489.image/masala/garam.jpg', prices: { '10g': 10, '20g': 20, '50g': 25, '100g': 50, '200g': 75, '1kg': 100 } },
+    { name: 'Colgate Paste',img: 'p489.image/masala/Mtr leon.jpg' , prices: { '10g': 10, '20g': 20, '50g': 25, '100g': 50, '200g': 75, '1kg': 100 }},
+    { name: 'Colgate Paste salt',img: 'p489.image/masala/sambar.jpg' , prices: { '10g': 10, '20g': 20, '50g': 25, '100g': 50, '200g': 75, '1kg': 100 }},
+    { name: 'Colgate Visible White Paste',img: 'p489.image/masala/idly chilli.jpg', prices: { '10g': 10, '20g': 20, '50g': 25, '100g': 50, '200g': 75, '1kg': 100 } },
+    { name: 'Colgate Sensetive Plus Paste',img: 'p489.image/masala/mutton.jpg', prices: { '10g': 10, '20g': 20, '50g': 25, '100g': 50, '200g': 75, '1kg': 100 } },
+    { name: 'Colgate MaxFresh Paste',img: 'p489.image/masala/sakthi egg.jpg ', prices: { '10g': 10, '20g': 20, '50g': 25, '100g': 50, '200g': 75, '1kg': 100 } },
+    { name: 'Himalaya Complete Care Paste',img: 'p489.image/masala/fish.jpg' , prices: { '10g': 10, '20g': 20, '50g': 25, '100g': 50, '200g': 75, '1kg': 100 }},
+    { name: 'Colgate Kids Paste',img: 'p489.image/masala/chilli.jpg', prices: { '10g': 10, '20g': 20, '50g': 25, '100g': 50, '200g': 75, '1kg': 100 } },
+    { name: 'Colgate Visible Whilte O2 Paste',img: 'p489.image/masala/chicken.jpg' , prices: { '10g': 10, '20g': 20, '50g': 25, '100g': 50, '200g': 75, '1kg': 100 }},
+    { name: 'Sensodyne Papid Paste',img: 'p489.image/masala/turmeric.jpg', prices: { '10g': 10, '20g': 20, '50g': 25, '100g': 50, '200g': 75, '1kg': 100 } },
+    { name: 'Colgate Gentle Sensetive ultra soft Brush',img: 'p489.image/masala/coriander.jpg', prices: { '10g': 10, '20g': 20, '50g': 25, '100g': 50, '200g': 75, '1kg': 100 } },
+    { name: 'Cogate ZigZag Brush',img: 'p489.image/masala/sakthi chilli.jpg' , prices: { '10g': 10, '20g': 20, '50g': 25, '100g': 50, '200g': 75, '1kg': 100 }},
+    { name: 'Sensodyne Brush',img: 'p489.image/masala/pepper.jpg', prices: { '10g': 10, '20g': 20, '50g': 25, '100g': 50, '200g': 75, '1kg': 100 } },
+    { name: 'Oral-B Brush',img: 'p489.image/masala/sakthi coriander.jpg' , prices: { '10g': 10, '20g': 20, '50g': 25, '100g': 50, '200g': 75, '1kg': 100 }},
+    { name: 'Colgate Kids (2+years) Brush',img: 'p489.image/masala/sakthi coriander.jpg' , prices: { '10g': 10, '20g': 20, '50g': 25, '100g': 50, '200g': 75, '1kg': 100 }},
+    { name: 'Oral-B Crisscross Deep Clean Brush',img: 'p489.image/masala/sakthi coriander.jpg' , prices: { '10g': 10, '20g': 20, '50g': 25, '100g': 50, '200g': 75, '1kg': 100 }},
+    { name: 'Colgate Enamel Ulter soft Brush',img: 'p489.image/masala/sakthi coriander.jpg' , prices: { '10g': 10, '20g': 20, '50g': 25, '100g': 50, '200g': 75, '1kg': 100 }},
+    { name: 'Colgate Maxfresh Mouth wash',img:' p489.image/masala/sakthi coriander.jpg' , prices: { '10g': 10, '20g': 20, '50g': 25, '100g': 50, '200g': 75, '1kg': 100 }},  
         ];
         
         const cart = JSON.parse(localStorage.getItem('cart')) || [];
