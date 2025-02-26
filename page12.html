@@ -3,41 +3,34 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Chocolate Categories</title>
+    <title>Hair Care Products</title>
     <link rel="stylesheet" href="all.css">
-    <style>
-        .weight-select {
-            padding: 5px;
-            font-size: 16px;
-            border-radius: 5px;
-            border: 1px solid #ccc;
-            background-color: #fff;
-        }
-    </style>
 </head>
 <body>
     <div class="header">
-        <div>Biscuits</div>
+        <div>Hair Care Products</div>
         <div class="cart-icon" onclick="redirectToBuyPage()">🛒</div>
     </div>
-
+    
     <div class="categories-container" id="categoriesContainer"></div>
-
+    
     <script>
         const products = [
-            { name: "Alpenliebe Gold", img: "p489.image/chocolates/Alpenliebe Gold Rich Milk.jpg" },
-            { name: "Melody Toffee", prices: { 'Small': 30, 'Medium': 60, 'Large': 90 }, img: "p489.image/chocolates/melody.jpg" },
-            { name: "Kinder Joy", prices: { 'Small': 15, 'Medium': 30, 'Large': 50 }, img: "p489.image/chocolates/kinder joy.jpg" },
-            { name: "Shots", prices: { 'Small': 5, 'Medium': 10, 'Large': 20 }, img: "p489.image/chocolates/shots.jpg" },
-            { name: "Gems", prices: { 'Small': 5, 'Medium': 10, 'Large': 20 }, img: "p489.image/chocolates/gems.jpg" },
-            { name: "5 Stars", prices: { 'Small': 10, 'Medium': 20, 'Large': 40 }, img: "p489.image/chocolates/5 star.jpg" },
-            { name: "Dairy Milk", prices: { 'Small': 20, 'Medium': 40, 'Large': 80 }, img: "p489.image/chocolates/dairy milk.jpg" },
-            { name: "Mango Bites", prices: { 'Small': 35, 'Medium': 70, 'Large': 100 }, img: "p489.image/chocolates/mango bite.jpg" },
-            { name: "Eclairs", prices: { 'Small': 45, 'Medium': 90, 'Large': 120 }, img: "p489.image/chocolates/eclairs.jpg" }
+            { name: "Parachute Oil", img: "p489.image/hair care/parachute.jpg", prices: { "100ml": 100, "250ml": 220 } },
+            { name: "Navaratna Oil", img: "p489.image/hair care/navratha.jpg", prices: { "100ml": 120, "200ml": 210 } },
+            { name: "VVD Oil", img: "p489.image/hair care/vvd.jpg", prices: { "100ml": 130, "200ml": 250 } },
+            { name: "Vatika Oil", img: "p489.image/hair care/vatika.jpg", prices: { "150ml": 140, "300ml": 260 } },
+            { name: "Nihar Oil", img: "p489.image/hair care/nihar .jpg", prices: { "100ml": 110, "200ml": 200 } },
+            { name: "Head & Shoulders Shampoo", img: "p489.image/hair care/head and sholders.jpg", prices: { "180ml": 160, "340ml": 300 } },
+            { name: "Clinic Plus Shampoo", img: "p489.image/hair care/clinic.jpg", prices: { "180ml": 150, "340ml": 290 } },
+            { name: "Meera Shampoo", img: "p489.image/hair care/meera.jpg", prices: { "100ml": 130, "200ml": 250 } },
+            { name: "Dove Shampoo", img: "p489.image/hair care/dove.jpg", prices: { "180ml": 170, "340ml": 320 } },
+            { name: "Chik Shampoo", img: "p489.image/hair care/chik.jpg", prices: { "180ml": 140, "340ml": 270 } },
+            { name: "Pantene Shampoo", img: "p489.image/hair care/pantene.jpg", prices: { "180ml": 160, "340ml": 310 } }
         ];
-    
+
         const cart = JSON.parse(localStorage.getItem('cart')) || [];
-        
+
         function addToCart(productName, price, weight) {
             const existingItem = cart.find(item => item.name === productName && item.weight === weight);
             if (existingItem) {
@@ -47,7 +40,7 @@
             }
             localStorage.setItem('cart', JSON.stringify(cart));
         }
-        
+
         function updatePrice(event) {
             const selectElement = event.target;
             const productCard = selectElement.closest('.category-card');
@@ -58,17 +51,17 @@
             priceElement.textContent = `₹${newPrice}`;
             selectElement.dataset.price = newPrice;
         }
-        
+
         function renderProducts() {
             const container = document.getElementById('categoriesContainer');
             products.forEach(product => {
                 const productCard = document.createElement('div');
                 productCard.className = 'category-card';
                 productCard.dataset.name = product.name;
-                
+
                 const initialWeight = Object.keys(product.prices)[0];
                 const initialPrice = product.prices[initialWeight];
-                
+
                 productCard.innerHTML = `
                     <img src="${product.img}" alt="${product.name}">
                     <h3>${product.name}</h3>
@@ -78,16 +71,16 @@
                     <p class="price">₹${initialPrice}</p>
                     <button onclick="addToCart('${product.name}', parseFloat(this.previousElementSibling.textContent.replace('₹', '')), this.previousElementSibling.previousElementSibling.value)">Add to Cart</button>
                 `;
-                
+
                 productCard.querySelector('.weight-select').addEventListener('change', updatePrice);
                 container.appendChild(productCard);
             });
         }
-        
+
         function redirectToBuyPage() {
             window.location.href = 'buy.html';
         }
-        
+
         renderProducts();
     </script>
 </body>
