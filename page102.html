@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Register - Online Shopping</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: "Poppins", sans-serif;
+        }
+
+        body {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+            background: white;
+        }
+
+        .container {
+            width: 400px;
+            padding: 40px;
+            background: linear-gradient(to right, #ffc3a0, lightgreen);
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15);
+            text-align: center;
+            border-radius: 10px;
+        }
+
+        h1 {
+            font-size: 24px;
+            margin-bottom: 20px;
+            color: #282323;
+        }
+
+        h2 {
+            font-size: 18px;
+            margin-bottom: 10px;
+            color: #282323;
+            text-align: left;
+        }
+
+        .input-box {
+            width: 100%;
+            margin-bottom: 15px;
+        }
+
+        .input-box input {
+            width: 100%;
+            padding: 12px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            font-size: 16px;
+            outline: none;
+            transition: 0.3s;
+        }
+
+        .input-box input:focus {
+            border-color: #ff6b81;
+            box-shadow: 0 0 5px rgba(255, 107, 129, 0.5);
+        }
+
+        .button-container {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 15px;
+        }
+
+        .btn, .cancel {
+            width: 48%;
+            padding: 12px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 16px;
+            transition: 0.3s ease-in-out;
+        }
+
+        .btn {
+            background: #ff6b81;
+            color: #fff;
+        }
+
+        .btn:hover {
+            background: #ff3b57;
+        }
+
+        .cancel {
+            background:#ff6b81;
+            color: #333;
+        }
+
+        .cancel:hover {
+            background: #ff3b57;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>🛍️ Create Your Account</h1>
+        <form onsubmit="redirectToLogin(event)">
+            <h2>Name:</h2>
+            <div class="input-box">
+                <input type="text" placeholder="Full Name" required>
+            </div>
+            <h2>Email:</h2>
+            <div class="input-box">
+                <input type="email" placeholder="Email ID" required>
+            </div>
+            <h2>Password:</h2>
+            <div class="input-box">
+                <input type="password" placeholder="Create Password" required>
+            </div>
+            <h2>Confirm Password:</h2>
+            <div class="input-box">
+                <input type="password" placeholder="Confirm Password" required>
+            </div>
+            <div style="display: flex; justify-content: space-between;">
+                <button type="submit" class="btn">Register</button>
+                <button type="reset" class="cancel">Cancel</button>
+            </div>
+        </form>
+    </div>
+
+    <script>
+        function redirectToLogin(event) {
+            event.preventDefault(); 
+            window.location.href = "page1.html"; 
+        }
+    </script>
+</body>
+</html>
