@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Oral Care</title>
+    <link rel="stylesheet" href="all.css">
+    <style>
+        .weight-select {
+            padding: 5px;
+            font-size: 16px;
+            border-radius: 5px;
+            border: 1px solid #ccc;
+            background-color: #fff;
+        }
+        .container {
+            display: flex;
+            justify-content: space-around;
+            flex-wrap: wrap;
+            margin-top: 20px;
+        }
+        .category-section {
+            width: 45%;
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            background-color: #f9f9f9;
+        }
+        .category-card {
+            text-align: center;
+            margin: 10px;
+            padding: 10px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            background-color: #fff;
+        }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <div>Oral Care</div>
+        <div class="cart-icon" onclick="redirectToBuyPage()">🛒</div>
+    </div>
+
+    <div class="container">
+        <div class="category-section" id="pastesContainer">
+            <h2>Toothpastes</h2>
+        </div>
+        <div class="category-section" id="brushesContainer">
+            <h2>Toothbrushes</h2>
+        </div>
+    </div>
+
+    <script>
+        const products = [
+            { name: 'Pepsodent Paste', img: 'p489.image/paste/pepsodent.jpg', category: 'paste', prices: { '50g': 25, '100g': 50, '200g': 75 } },
+            { name: 'CloseUp Paste', img: 'p489.image/paste/closeup.jpg', category: 'paste', prices: { '50g': 25, '100g': 50, '200g': 75 } },
+            { name: 'Colgate Paste', img: 'p489.image/paste/colgate.jpg', category: 'paste', prices: { '50g': 25, '100g': 50, '200g': 75 } },
+            { name: 'Colgate MaxFresh Paste', img: 'p489.image/paste/maxfresh.jpg', category: 'paste', prices: { '50g': 25, '100g': 50, '200g': 75 } },
+            { name: 'Sensodyne Rapid Paste', img: 'p489.image/paste/sensodyne.jpg', category: 'paste', prices: { '50g': 25, '100g': 50, '200g': 75 } },
+            { name: 'Colgate ZigZag Brush', img: 'p489.image/brush/zigzag.jpg', category: 'brush', prices: { '1pc': 40, '2pc': 70 } },
+            { name: 'Oral-B Brush', img: 'p489.image/brush/oralb.jpg', category: 'brush', prices: { '1pc': 50, '2pc': 90 } },
+            { name: 'Colgate Kids Brush', img: 'p489.image/brush/kids.jpg', category: 'brush', prices: { '1pc': 45, '2pc': 80 } },
+        ];
+
+        const cart = JSON.parse(localStorage.getItem('cart')) || [];
+
+        function addToCart(productName, price, weight) {
+            const existingItem = cart.find(item => item.name === productName && item.weight === weight);
+            if (existingItem) {
+                existingItem.quantity += 1;
+            } else {
+                cart.push({ name: productName, price, weight, quantity: 1 });
+            }
+            localStorage.setItem('cart', JSON.stringify(cart));
+        }
+
+        function updatePrice(event) {
+            const selectElement = event.target;
+            const productCard = selectElement.closest('.category-card');
+            const priceElement = productCard.querySelector('.price');
+            const selectedWeight = selectElement.value;
+            const product = products.find(p => p.name === productCard.dataset.name);
+            const newPrice = product.prices[selectedWeight];
+            priceElement.textContent = `₹${newPrice}`;
+            selectElement.dataset.price = newPrice;
+        }
+
+        function renderProducts() {
+            const pastesContainer = document.getElementById('pastesContainer');
+            const brushesContainer = document.getElementById('brushesContainer');
+            
+            products.forEach(product => {
+                const productCard = document.createElement('div');
+                productCard.className = 'category-card';
+                productCard.dataset.name = product.name;
+                
+                const initialWeight = Object.keys(product.prices)[0];
+                const initialPrice = product.prices[initialWeight];
+                
+                productCard.innerHTML = `
+                    <img src="${product.img}" alt="${product.name}" width="100">
+                    <h3>${product.name}</h3>
+                    <select class="weight-select">
+                        ${Object.keys(product.prices).map(weight => `<option value="${weight}">${weight}</option>`).join('')}
+                    </select>
+                    <p class="price">₹${initialPrice}</p>
+                    <button onclick="addToCart('${product.name}', parseFloat(this.previousElementSibling.textContent.replace('₹', '')), this.previousElementSibling.previousElementSibling.value)">Add to Cart</button>
+                `;
+                
+                productCard.querySelector('.weight-select').addEventListener('change', updatePrice);
+                
+                if (product.category === 'paste') {
+                    pastesContainer.appendChild(productCard);
+                } else {
+                    brushesContainer.appendChild(productCard);
+                }
+            });
+        }
+
+        function redirectToBuyPage() {
+            window.location.href = 'buy.html';
+        }
+
+        renderProducts();
+    </script>
+</body>
+</html>
