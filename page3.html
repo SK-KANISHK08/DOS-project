@@ -168,26 +168,20 @@
             <h3>Atta</h3>
             <button onclick="selectCategory('Atta')">View Items</button>
         </div>
-
     </div>
 
     <script>
+        
         const storedUsername = localStorage.getItem("username");
         if (storedUsername) {
-            document.getElementById("username").innerText = storedUsername;
-        }
-
-        function selectCategory(category) {
-            sessionStorage.setItem("selectedCategory", category);
-            window.location.href = "categoryItems.html";
+            document.getElementById("username").innerText = storedUsername;  
         }
 
         function logout() {
-            localStorage.removeItem("username");
-            sessionStorage.clear();
-            window.location.href = "loginPage.html";
+            localStorage.removeItem("username");  
+            sessionStorage.clear(); 
+            window.location.href = "loginPage.html";  
         }
     </script>
 </body>
-
 </html>

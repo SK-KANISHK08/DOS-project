@@ -3,93 +3,184 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Masala and Spices</title>
-    <link rel="stylesheet" href="all.css">
+    <title>Grocery Categories</title>
     <style>
-        .weight-select {
-            padding: 5px;
+         body {
+            font-family: 'Poppins', sans-serif;
+            background: url('https://www.toptal.com/designers/subtlepatterns/patterns/grocery.png');
+            background-size: cover;
+            background-attachment: fixed;
+            margin: 0;
+            padding: 0;
+            color: #333;
+        }
+
+        .header {
+            padding: 10px 10px;
+            background-color: #eff3f0;
+            color: rgb(23, 148, 36);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-size: 24px;
+            font-weight: bold;
+            position: fixed;
+            top: 0;
+            width: 100%;
+            z-index: 1000;
+            box-sizing: border-box;
+        }
+
+        .header .username {
+            font-size: 18px;
+            font-weight: normal;
+        }
+
+        .header .logout-btn {
+            background-color: #28a745;
+            border: none;
+            color: white;
             font-size: 16px;
+            padding: 10px 20px;
+            cursor: pointer;
             border-radius: 5px;
-            border: 1px solid #ccc;
-            background-color: #fff;
+            transition: background-color 0.3s ease;
+            margin-left: 15px;
+        }
+
+        .header .logout-btn:hover {
+            background-color: #290e97;
+        }
+
+        .categories-container {
+            padding: 100px 5%;
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+            gap: 20px;
+            max-width: 1200px;
+            margin: 0 auto;
+}
+
+
+        .category-card {
+            background-color: #f0e8e8;
+            border-radius: 10px;
+            box-shadow: 0px 4px 10px rgba(28, 16, 15, 0.2);
+            overflow: hidden;
+            text-align: center;
+            padding: 10px;
+        }
+
+        .category-card:hover {
+            transform: scale(1.05);
+            box-shadow: 0px 10px 10px white(16, 134, 198, 0.3);
+        }
+
+        .category-card img {
+            width: 50%;
+            height: 100px;
+            object-fit: cover;
+            margin-bottom: 20px;
+        }
+
+        .category-card h3 {
+            font-size: 22px;
+            margin: 0 0 10px;
+            color: #2e3794;
+        }
+
+        .category-card button {
+            display: inline-block;
+            margin-top: 10px;
+            padding: 5px 10px;
+            background-color: #28a745;
+            color: #fff;
+            font-size: 10px;
+            border: none;
+            border-radius: 10px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
+        .category-card button:hover {
+            background-color: #218838;
         }
     </style>
 </head>
 <body>
     <div class="header">
-        <div>Masala & Spices</div>
-        <div class="cart-icon" onclick="redirectToBuyPage()">🛒</div>
+        <div>Categories!</div>
+        <div class="username">Hello, <span id="username">Shopper</span></div>
+        <div>
+            <button class="logout-btn" onclick="logout()">Logout</button>
+        </div>
     </div>
 
-    <div class="categories-container" id="categoriesContainer"></div>
+    <div class="categories-container">
+        <div class="category-card" onclick="window.location.href='page4.html'">
+            <img src="p3.image/Oil & Ghee.jpeg" alt="Oil & Ghee">
+            <h3>Oil & Ghee</h3>
+            <button onclick="selectCategory('Oil & Ghee')">View Items</button>
+        </div>
+
+
+        <div class="category-card" onclick="window.location.href='masala & spices.html'">
+            <img src="p3.image/Masala & Spices.jpeg" alt="Masala & Spices">
+            <h3>Masala & Spices</h3>
+            <button onclick="selectCategory('Masala & Spices')">View Items</button>
+        </div>
+
+        <div class="category-card" onclick="window.location.href='laundry.html'">
+            <img src="p3.image/Laundry & Dishwash.webp" alt="Laundry & Dishwash">
+            <h3>Laundry & Dishwash</h3>
+            <button onclick="selectCategory('Laundry & Dishwash')">View Items</button>
+        </div>
+
+        <div class="category-card" onclick="window.location.href='page7.html'">
+            <img src="p3.image/Biscuits & Chips.jpeg" alt="Biscuits & Chips">
+            <h3>Biscuits & Chips</h3>
+            <button onclick="selectCategory('Biscuits & Chips')">View Items</button>
+        </div>
+
+        <div class="category-card" onclick="window.location.href='chocolates.html'">
+            <img src="p3.image/Chocolates.jpeg" alt="Chocolates">
+            <h3>Chocolates</h3>
+            <button onclick="selectCategory('Chocolates & Sweets')">View Items</button>
+        </div>
+
+        <div class="category-card" onclick="window.location.href='hair oil.html'">
+            <img src="p3.image/Hair care.jpeg" alt="Hair care">
+            <h3>Hair care</h3>
+            <button onclick="selectCategory('Hair care')">View Items</button>
+        </div>
+        <div class="category-card" onclick="window.location.href='beverages.html'">
+            <img src="p3.image/Beverages.jpeg" alt="Beverages">
+            <h3>Beverages</h3>
+            <button onclick="selectCategory('Beverages')">View Items</button>
+        </div>
+        <div class="category-card" onclick="window.location.href='oral care.html'">
+            <img src="p3.image/Oral Care.jpeg" alt="Oral Care">
+            <h3>Oral Care</h3>
+            <button onclick="selectCategory('Oral Care')">View Items</button>
+        </div>
+        <div class="category-card" onclick="window.location.href='atta.html'">
+            <img src="p3.image/rice&atta.webp" alt="Atta">
+            <h3>Atta</h3>
+            <button onclick="selectCategory('Atta')">View Items</button>
+        </div>
+    </div>
 
     <script>
-        const products = [
-        { name: "AAVIN Ghee", price: 500, img: 'p489.image/ghee/aavin.jpg'},
-        { name: "Milky Mist Ghee", price: 540, img: 'p489.image/ghee/milk mist.jpg' },
-        { name: "Heritage Ghee", price: 530, img: "p489.image/ghee/heritage.jpg" },
-        { name: "Amul Ghee", price: 520, img: "p489.image/ghee/amul.jpg" },
-        { name: "Jersey Ghee", price: 510, img: "p489.image/ghee/jersey.jpg" },
-        { name: "Aashirvaad Svasti Ghee", price: 580, img: "p489.image/ghee/aashirvaad.jpg" },
-        { name: "Britannia Ghee", price: 560, img: "p489.image/ghee/Gawa ghee.jpg" },
-        { name: "Classic Ghee", price: 540, img: "p489.image/ghee/desi ghee.jpg" },
-        { name: "Gowardhan Ghee", price: 600, img: "p489.image/ghee/gowardhan.jpg" }
-        ];
+        const storedUsername = localStorage.getItem("username");
+        if (storedUsername) {
+            document.getElementById("username").innerText = storedUsername;
+        }
 
-    
-        const cart = JSON.parse(localStorage.getItem('cart')) || [];
-        
-        function addToCart(productName, price, weight) {
-            const existingItem = cart.find(item => item.name === productName && item.weight === weight);
-            if (existingItem) {
-                existingItem.quantity += 1;
-            } else {
-                cart.push({ name: productName, price, weight, quantity: 1 });
-            }
-            localStorage.setItem('cart', JSON.stringify(cart));
+        function logout() {
+            localStorage.removeItem("username");
+            sessionStorage.clear();
+            window.location.href = "loginPage.html";
         }
-        
-        function updatePrice(event) {
-            const selectElement = event.target;
-            const productCard = selectElement.closest('.category-card');
-            const priceElement = productCard.querySelector('.price');
-            const selectedWeight = selectElement.value;
-            const product = products.find(p => p.name === productCard.dataset.name);
-            const newPrice = product.prices[selectedWeight];
-            priceElement.textContent = `₹${newPrice}`;
-            selectElement.dataset.price = newPrice;
-        }
-        
-        function renderProducts() {
-            const container = document.getElementById('categoriesContainer');
-            products.forEach(product => {
-                const productCard = document.createElement('div');
-                productCard.className = 'category-card';
-                productCard.dataset.name = product.name;
-                
-                const initialWeight = Object.keys(product.prices)[0];
-                const initialPrice = product.prices[initialWeight];
-                
-                productCard.innerHTML = `
-                    <img src="${product.img}" alt="${product.name}">
-                    <h3>${product.name}</h3>
-                    <select class="weight-select">
-                        ${Object.keys(product.prices).map(weight => `<option value="${weight}">${weight}</option>`).join('')}
-                    </select>
-                    <p class="price">₹${initialPrice}</p>
-                    <button onclick="addToCart('${product.name}', parseFloat(this.previousElementSibling.textContent.replace('₹', '')), this.previousElementSibling.previousElementSibling.value)">Add to Cart</button>
-                `;
-                
-                productCard.querySelector('.weight-select').addEventListener('change', updatePrice);
-                container.appendChild(productCard);
-            });
-        }
-        
-        function redirectToBuyPage() {
-            window.location.href = 'buy.html';
-        }
-        
-        renderProducts();
     </script>
 </body>
 </html>

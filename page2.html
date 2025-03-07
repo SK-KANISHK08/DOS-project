@@ -5,101 +5,100 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Homepage & Biodata Form</title>
     <style>
-        body {
-            font-family: 'Arial', sans-serif;
-            background-color: white;
-            margin: 0;
-            padding: 0;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            height: 100vh;
-        }
+      body {
+    font-family: 'Arial', sans-serif;
+    background-color: white;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+}
 
-        h2 {
-            text-align: center;
-            color: #6b5b95;
-            font-size: 1.8rem;
-            margin-bottom: 20px;
-        }
+h2 {
+    text-align: center;
+    color: #6b5b95;
+    font-size: 1.8rem;
+    margin-bottom: 20px;
+}
 
-        .form-container {
-            background: linear-gradient(to right, lightgreen, #ffc3a0);
-            border-radius: 20px;
-            padding: 20px 40px;
-            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
-            max-width: 500px;
-            width: 90%;
-        }
+.form-container {
+    background: linear-gradient(to right, lightgreen, #ffc3a0);
+    border-radius: 20px;
+    padding: 20px 40px;
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+    max-width: 500px;
+    width: 90%;
+}
 
-        label {
-            display: block;
-            margin-bottom: 5px;
-            color: #333;
-            font-weight: bold;
-        }
+label {
+    display: block;
+    margin-bottom: 5px;
+    color: #333;
+    font-weight: bold;
+}
 
-        input[type="text"],
-        select {
-            width: 100%;
-            padding: 10px;
-            margin-bottom: 15px;
-            border: 1px solid #ccc;
-            border-radius: 5px;
-            font-size: 1rem;
-            box-shadow: inset 0 2px 5px rgba(0, 0, 0, 0.1);
-        }
+input[type="text"],
+select {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 15px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-size: 1rem;
+    box-shadow: inset 0 2px 5px rgba(0, 0, 0, 0.1);
+}
 
-        input[type="text"]:focus,
-        select:focus {
-            border-color: #6b5b95;
-            outline: none;
-            box-shadow: 0 0 10px rgba(107, 91, 149, 0.5);
-        }
+input[type="text"]:focus,
+select:focus {
+    border-color: #6b5b95;
+    outline: none;
+    box-shadow: 0 0 10px rgba(107, 91, 149, 0.5);
+}
 
-        .form-group {
-            margin-bottom: 15px;
-        }
+.form-group {
+    margin-bottom: 15px;
+}
 
-        .form-buttons {
-            display: flex;
-            justify-content: space-between;
-        }
+.form-buttons {
+    display: flex;
+    justify-content: space-between;
+}
 
-        button {
-            padding: 10px 20px;
-            border: none;
-            border-radius: 5px;
-            font-size: 1rem;
-            cursor: pointer;
-            transition: background-color 0.3s, transform 0.2s;
-        }
+button {
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: background-color 0.3s, transform 0.2s;
+}
 
-        .btn {
-            background: #ff6b81;
-            color: #fff;
-        }
+.btn {
+    background: #ff6b81;
+    color: #fff;
+}
 
-        .btn:hover {
-            background: #ff3b57;
-        }
+.btn:hover {
+    background: #ff3b57;
+}
 
-        .cancel {
-            background: #ff6b81;
-            color: #fff;
-        }
+.cancel {
+    background: #ff6b81;
+    color: #fff;
+}
 
-        .cancel:hover {
-            background: #ff3b57;
-        }
+.cancel:hover {
+    background: #ff3b57;
+}
     </style>
 </head>
 <body>
     <div class="overlay">
         <div class="form-container">
             <h2>🛍️ Online Shopping</h2>
-            <form  action="page3.html" method="get">
-            <form action="#" method="post">
+            <form action="page3.html" method="get" onsubmit="storeName()">
                 <label for="name">Name:</label>
                 <input type="text" placeholder="Enter Your Name" id="name" name="name" required>
 
@@ -135,5 +134,14 @@
             </form>
         </div>
     </div>
+
+    <script>
+        function storeName(event) {
+            event.preventDefault();  
+            const name = document.getElementById('name').value;
+            localStorage.setItem('username', name);
+            window.location.href = 'page3.html';  
+        }
+    </script>
 </body>
 </html>
