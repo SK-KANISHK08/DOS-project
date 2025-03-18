@@ -12,7 +12,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         if ($stmt) {
             $stmt->bind_param("ss", $username, $password);
             if ($stmt->execute()) {
-                echo "Data inserted successfully!";
+                header("Location: page3.html");
+                exit();
             } else {
                 echo "Error inserting data: " . $stmt->error;
             }
@@ -133,7 +134,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
         <div class="login-container">
             <h1>🛍️ DEPARTMENT ONLINE SHOPPING</h1>
-            <form method="POST">
+            <form action="login.php" method="POST">
                 <h2>Email:</h2>
                 <div class="input-box">
                     <input type="text" placeholder="Email ID or Phone Number" name="email" required>
