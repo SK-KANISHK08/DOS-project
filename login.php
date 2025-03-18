@@ -133,7 +133,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
         <div class="login-container">
             <h1>🛍️ DEPARTMENT ONLINE SHOPPING</h1>
-            <form action="page2.html" method="POST">
+            <form method="POST">
                 <h2>Email:</h2>
                 <div class="input-box">
                     <input type="text" placeholder="Email ID or Phone Number" name="email" required>
