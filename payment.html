@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Payment</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            margin: 20px;
+        }
+        .payment-container {
+            width: 50%;
+            margin: auto;
+            padding: 20px;
+            border: 1px solid #ddd;
+            border-radius: 10px;
+            box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.1);
+        }
+        input, select, button {
+            width: 100%;
+            padding: 10px;
+            margin: 10px 0;
+        }
+        .pay-btn {
+            background-color: green;
+            color: white;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+
+    <h2>Payment Page</h2>
+    <div class="payment-container">
+        <h3>Total Amount: <span id="grandTotal">₹0</span></h3>
+
+        <label for="paymentMethod">Choose Payment Method:</label>
+        <select id="paymentMethod">
+            <option value="credit">Credit Card</option>
+            <option value="debit">Debit Card</option>
+            <option value="upi">UPI</option>
+            <option value="netbanking">Net Banking</option>
+        </select>
+
+        <input type="text" id="cardNumber" placeholder="Enter Card/UPI ID">
+        <input type="text" id="cardHolder" placeholder="Cardholder Name">
+        <input type="password" id="cvv" placeholder="CVV">
+        
+        <button class="pay-btn" onclick="processPayment()">Pay Now</button>
+    </div>
+
+    <script>
+        let cart = JSON.parse(localStorage.getItem('cart')) || [];
+        let totalAmount = cart.reduce((sum, item) => sum + item.price * item.quantity, 0);
+        let gst = totalAmount * 0.18;
+        let grandTotal = totalAmount + gst;
+
+        document.getElementById('grandTotal').innerText = `₹${grandTotal.toFixed(2)}`;
+
+        function processPayment() {
+            alert("Payment Successful! Redirecting to Thank You page...");
+            localStorage.removeItem('cart');
+            window.location.href = 'ThankYou.html';
+        }
+    </script>
+
+</body>
+</html>
