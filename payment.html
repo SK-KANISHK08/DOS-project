@@ -28,6 +28,11 @@
             color: white;
             cursor: pointer;
         }
+        .cod-info {
+            display: none;
+            color: blue;
+            font-weight: bold;
+        }
     </style>
 </head>
 <body>
@@ -37,18 +42,23 @@
         <h3>Total Amount: <span id="grandTotal">₹0</span></h3>
 
         <label for="paymentMethod">Choose Payment Method:</label>
-        <select id="paymentMethod">
+        <select id="paymentMethod" onchange="togglePaymentFields()">
             <option value="credit">Credit Card</option>
             <option value="debit">Debit Card</option>
             <option value="upi">UPI</option>
             <option value="netbanking">Net Banking</option>
+            <option value="cod">Cash on Delivery (COD)</option>
         </select>
 
-        <input type="text" id="cardNumber" placeholder="Enter Card/UPI ID">
-        <input type="text" id="cardHolder" placeholder="Cardholder Name">
-        <input type="password" id="cvv" placeholder="CVV">
-        
-        <button class="pay-btn" onclick="processPayment()">Pay Now</button>
+        <div id="paymentFields">
+            <input type="text" id="cardNumber" placeholder="Enter Card/UPI ID">
+            <input type="text" id="cardHolder" placeholder="Cardholder Name">
+            <input type="password" id="cvv" placeholder="CVV">
+        </div>
+
+        <p class="cod-info" id="codMessage">You have selected Cash on Delivery. Please have the exact amount ready.</p>
+
+        <button class="pay-btn" onclick="processPayment()">Proceed</button>
     </div>
 
     <script>
@@ -59,8 +69,29 @@
 
         document.getElementById('grandTotal').innerText = `₹${grandTotal.toFixed(2)}`;
 
+        function togglePaymentFields() {
+            let paymentMethod = document.getElementById('paymentMethod').value;
+            let paymentFields = document.getElementById('paymentFields');
+            let codMessage = document.getElementById('codMessage');
+
+            if (paymentMethod === 'cod') {
+                paymentFields.style.display = 'none';
+                codMessage.style.display = 'block';
+            } else {
+                paymentFields.style.display = 'block';
+                codMessage.style.display = 'none';
+            }
+        }
+
         function processPayment() {
-            alert("Payment Successful! Redirecting to Thank You page...");
+            let paymentMethod = document.getElementById('paymentMethod').value;
+
+            if (paymentMethod === 'cod') {
+                alert("Order placed successfully! Please pay in cash upon delivery.");
+            } else {
+                alert("Payment Successful! Redirecting to Thank You page...");
+            }
+            
             localStorage.removeItem('cart');
             window.location.href = 'ThankYou.html';
         }
